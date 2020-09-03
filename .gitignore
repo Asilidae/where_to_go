@@ -7,4 +7,7 @@ where_to_go/__pycache__/settings.cpython-37.pyc
 where_to_go/__pycache__/urls.cpython-37.pyc
 where_to_go/__pycache__/views.cpython-37.pyc
 where_to_go/__pycache__/wsgi.cpython-37.pyc
+places/__pycache__/
+places/migrations/__pycache__/
 .gitignore
+
