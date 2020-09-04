@@ -3,6 +3,9 @@ from django.db import models
 
 class Place(models.Model):
     title = models.CharField('Заголовок', max_length=200)
+    title_short = models.CharField('Заголовок, при наведении курсора',
+                                   max_length=200)
+    place_id = models.CharField('ID места', max_length=20)
     description_short = models.TextField('Краткое описание',
                                          null=True,
                                          blank=True)
