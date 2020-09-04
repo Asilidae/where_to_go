@@ -1,4 +1,4 @@
-# Карта покемонов
+# Куда сходить
 
 ![sample text](https://dvmn.org/media/lessons/ezgif.com-gif-maker_4nWhtfQ.gif)
 
