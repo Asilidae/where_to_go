@@ -14,3 +14,15 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    place = models.ForeignKey(Place,
+                              verbose_name='Какой объект?',
+                              on_delete=models.CASCADE)
+    image = models.ImageField('Изображение')
+    number = models.IntegerField('Номер по порядку')
+
+    def __str__(self):
+        return '{number} {tittle}'.format(number=self.number,
+                                          tittle=self.place.title)
