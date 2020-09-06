@@ -30,3 +30,6 @@ class Image(models.Model):
     def __str__(self):
         return '{number} {tittle}'.format(number=self.number,
                                           tittle=self.place.title)
+
+    class Meta:
+        ordering = ('number',)
