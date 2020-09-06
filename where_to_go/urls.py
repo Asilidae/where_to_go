@@ -24,7 +24,7 @@ from places import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('places/<int:id>/', views.get_place_by_id)
+    path('places/<int:id>/', views.get_place_by_id, name='place')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
