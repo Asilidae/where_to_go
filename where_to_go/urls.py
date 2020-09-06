@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 
@@ -23,6 +24,7 @@ from places import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
     path('', views.index),
     path('places/<int:id>/', views.get_place_by_id, name='place')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
