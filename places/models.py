@@ -25,7 +25,7 @@ class Image(models.Model):
                               verbose_name='Какой объект?',
                               related_name='image',
                               on_delete=models.CASCADE)
-    image = models.ImageField('Изображение')
+    image = models.ImageField('Изображение', null=True, blank=True)
     number = models.IntegerField('Номер по порядку')
 
     def __str__(self):
