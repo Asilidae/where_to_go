@@ -1,9 +1,8 @@
-from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
+from adminsortable2.admin import SortableInlineAdminMixin
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import Place, Image
-# Register your models here.
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -19,10 +18,10 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
             )
         )
 
+
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     search_fields = ['title']
     inlines = [
         ImageInline,
     ]
-

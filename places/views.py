@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
@@ -31,7 +31,9 @@ def index(request):
         "features": features
     }
 
-    return render(request, 'index.html', {'places_geojson': json.dumps(context)})
+    return render(request,
+                  'index.html',
+                  {'places_geojson': json.dumps(context)})
 
 
 def get_place_by_id(request, id):
