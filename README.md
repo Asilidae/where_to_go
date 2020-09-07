@@ -1,6 +1,6 @@
 # Куда сходить
 
-![sample text](https://dvmn.org/media/lessons/ezgif.com-gif-maker_4nWhtfQ.gif)
+![sample text](https://github.com/devmanorg/where-to-go-frontend/blob/master/.gitbook/assets/site.png?raw=true)
 
 ### Предметная область
 
@@ -12,6 +12,10 @@
 - Скачайте код
 - Установите зависимости командой `pip install -r requirements.txt`
 - Запустите сервер командой `python manage.py runserver`
+
+### Демо-версия
+
+Демо-версия сайта доступна по ссылке: [Куда пойти - Москва глазами Артема](http://asilidae.pythonanywhere.com/)
 
 ### Переменные окружения
 
