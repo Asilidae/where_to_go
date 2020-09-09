@@ -33,12 +33,12 @@ def index(request):
 
     return render(request,
                   'index.html',
-                  {'places_geojson': json.dumps(context)})
+                  {'places_geojson': context})
 
 
 def get_place_by_id(request, id):
     place = get_object_or_404(Place, pk=id)
-    images = [one_image.image.url for one_image in place.image.all()]
+    images = [one_image.image.url for one_image in place.images.all()]
     context = {
         "title": place.title,
         "imgs": images,
