@@ -36,10 +36,5 @@ class Command(BaseCommand):
         github_api_file_url = kwargs['github_api_file_url']
         file_response = requests.get(github_api_file_url)
 
-        if file_response.status_code == 200:
-            self.create_new_place(file_response)
-            print('Success!')
-        elif file_response.status_code == 404:
-            print('Not Found!')
-        elif file_response.status_code == 401:
-            print('Unauthorized!')
+        file_response.raise_for_status()
+        self.create_new_place(file_response)
