@@ -10,15 +10,9 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     readonly_fields = ["get_preview"]
     fields = ('image', 'get_preview', 'number',)
     admin.TabularInline.extra = 1
-    admin.site.empty_value_display = 'Картинка ещё не загружена'
 
     def get_preview(self, obj):
-        return mark_safe(
-            '<img src="{url}" height={height} />'.format(
-                url=obj.image.url,
-                height='200px'
-            )
-        )
+        return mark_safe(obj.get_image())
 
 
 @admin.register(Place)

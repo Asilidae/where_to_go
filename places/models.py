@@ -24,6 +24,14 @@ class Image(models.Model):
     image = models.ImageField('Изображение', blank=True)
     number = models.IntegerField('Номер по порядку')
 
+    def get_image(self):
+        if not self.image:
+            return 'Картинка ещё не загружена'
+        return '<img src="{url}" height={height} />'.format(
+            url=self.image.url,
+            height='200px'
+        )
+
     def __str__(self):
         return '{number} {tittle}'.format(number=self.number,
                                           tittle=self.place.title)
