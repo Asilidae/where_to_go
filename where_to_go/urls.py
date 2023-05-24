@@ -10,7 +10,8 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('tinymce/', include('tinymce.urls')),
                   path('', views.index),
-                  path('places/<int:id>/', views.get_place_by_id, name='place')
+                  path('places/<int:id>/', views.get_place_by_id, name='place'),
+                  path('save-selected-places/', views.save_selected_places, name='save_selected_places'),
               ] + static(settings.STATIC_URL,
                          document_root=settings.STATIC_ROOT)
 

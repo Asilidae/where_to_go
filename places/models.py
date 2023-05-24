@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.contrib.auth.models import User
 
 
 class Place(models.Model):
@@ -38,3 +39,8 @@ class Image(models.Model):
 
     class Meta:
         ordering = ('number',)
+
+
+class UserSelectedPlaces(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    places = models.ManyToManyField(Place)

@@ -95,16 +95,19 @@
                 </div>
 
                 <div v-html="selectedPlace.long_description"></div>
+    <input type="checkbox" v-model="selectedPlaces[selectedPlace.placeId]" />
+    <label for="checkbox">Посетить</label>
             </div>
         </div>
     </script>
 
 </head>
 <body>
+    <button id="submit-button" style="position: absolute; bottom: 100px; left: 20px; z-index: 1000;">Отправить</button>
+
 <div id="sidebar">
     <div id="sidebar-app"></div>
 </div>
-
 <div id="map"></div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -225,6 +228,7 @@
             // imgs
             // short_description
             // long_description
+            selectedPlaces: {},  // добавлено
         },
         computed: {
             promptVisible: function () {
@@ -257,8 +261,44 @@
                 // default event handlers of Bootstrap Carousel conflict with Leaflet
                 // so custom handler will mimic expected carousel behaviour
                 $('#place-photos').carousel(slideId);
-            }
+            },
+
+        submitSelectedPlaces: function() {
+        var selectedPlaceIds = Object.keys(this.selectedPlaces).filter(placeId => this.selectedPlaces[placeId]);
+
+        console.log(selectedPlaceIds);  // log selected IDs
+
+
+        // URL to send data to server. Replace with your server URL.
+            var serverUrl = 'save-selected-places/';
+
+            // Send data to server using fetch API
+            fetch(serverUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(selectedPlaceIds)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            }).then(data => {
+                console.log('Success:', data);
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+
+
+
+    }
         },
+        mounted: function() {
+        document.getElementById('submit-button').addEventListener('click', this.submitSelectedPlaces);
+},
     });
 
     map.on('click', function () {

@@ -3,8 +3,9 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
-from places.models import Place
+from places.models import Place, UserSelectedPlaces
 
 
 def index(request):
@@ -53,3 +54,17 @@ def get_place_by_id(request, id):
     return JsonResponse(context,
                         safe=False,
                         json_dumps_params={'ensure_ascii': False, 'indent': 1})
+
+
+@csrf_exempt
+def save_selected_places(request):
+    if request.method == 'POST':
+        place_ids = json.loads(request.body)
+        print(place_ids)  # Log the received data
+        coordinates = list(Place.objects.filter(id__in=place_ids).values('place_id', 'lon', 'lng'))
+        print(coordinates)
+        # ... Process the data as needed ...
+
+        return JsonResponse({"message": "Data received successfully."})
+    else:
+        return JsonResponse({"error": "Invalid request method."})
