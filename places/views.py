@@ -5,8 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-from places.models import Place, UserSelectedPlaces
-
+from places.models import Place
+import places.services as building_route
 
 def index(request):
     places = Place.objects.all()
@@ -64,6 +64,14 @@ def save_selected_places(request):
         coordinates = list(Place.objects.filter(id__in=place_ids).values('place_id', 'lon', 'lng'))
         print(coordinates)
         # ... Process the data as needed ...
+        min_route, min_distance = building_route.optimal_route(coordinates)
+        print(min_route)
+        print(min_distance)
+
+        route = building_route.nearest_neighbour(coordinates)
+        print(route)
+
+        building_route.map_generated(route)
 
         return JsonResponse({"message": "Data received successfully."})
     else:
